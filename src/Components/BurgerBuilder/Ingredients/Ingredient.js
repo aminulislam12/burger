@@ -23,21 +23,21 @@ const Ingredient = (props) => {
         </div>
       );
       break;
-    case "salad":
+    case "Salad":
       Ingredient = (
         <div>
           <img src={Salad} alt="salad" />
         </div>
       );
       break;
-    case "cheese":
+    case "Cheese":
       Ingredient = (
         <div>
           <img src={Cheese} alt="cheese" />
         </div>
       );
       break;
-    case "meat":
+    case "Meat":
       Ingredient = (
         <div>
           <img src={Meat} alt="meat" />

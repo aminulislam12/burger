@@ -1,16 +1,21 @@
 import React from "react";
-import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
+import { Button, Card, CardBody, CardFooter, CardHeader } from "reactstrap";
 import "./Control.css";
 
+const control = [
+  { lable: "Salad", type: "Salad" },
+  { lable: "Cheese", type: "Cheese" },
+  { lable: "Meat", type: "Meat" },
+];
 const BuildBurger = (props) => {
   return (
-    <div className="d-flex justify-content-between">
-      <div className="fw-bold">Salad</div>
-      <div className="">
-        <button className="btn btn-success mx-1">
+    <div className="d-flex justify-content-between my-2">
+      <div className="fw-bold items">{props.lable}</div>
+      <div>
+        <button className="btn btn-success mx-1" onClick={props.add}>
           <i className="fa fa-plus"></i>
         </button>
-        <button className="btn btn-danger">
+        <button className="btn btn-danger" onClick={props.remove}>
           <i className="fa fa-minus"></i>
         </button>
       </div>
@@ -26,12 +31,28 @@ const Control = (props) => {
           <h5 className="text-center text-light fw-bold">Add Ingredient</h5>
         </CardHeader>
         <CardBody>
-          <BuildBurger />
+          {control.map((item) => {
+            return (
+              <BuildBurger
+                lable={item.lable}
+                type={item.type}
+                key={Math.random()}
+                add={() => props.addIngredient(item.type)}
+                remove={() => props.removeIngredient(item.type)}
+              />
+            );
+          })}
         </CardBody>
         <CardFooter className="bg-dark">
-          <h5 className="text-center text-light">Price: BDT</h5>
+          <h5 className="text-center text-light">Price: {props.price} BDT</h5>
         </CardFooter>
-        <button className="btn btn-success d-block">Order Now</button>
+        <Button
+          className="btn btn-success d-block"
+          onClick={props.toggleModal}
+          disabled={!props.purchesable}
+        >
+          Order Now
+        </Button>
       </Card>
     </div>
   );
