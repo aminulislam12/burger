@@ -1,0 +1,16 @@
+.checkoutForm,
+.paymentInfo {
+  width: 450px !important;
+  border: 1px solid #d70f64;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.checkout {
+  display: grid;
+  justify-content: center;
+}
+
+.paymentInfo {
+  padding: 8px !important;
+}
