@@ -20,6 +20,11 @@ const Header = () => {
               Orders
             </NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink exact to="/authform" className="nav-link">
+              Login
+            </NavLink>
+          </NavItem>
         </Nav>
       </Navbar>
     </div>

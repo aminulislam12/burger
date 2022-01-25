@@ -31,7 +31,7 @@ const SingleOrderShow = (props) => {
             {props.order.custometinfo.customerPhone}
           </h5>
           <div className="mt-3 mb-2">
-            <i class="bi bi-basket-fill mx-1"></i>
+            <i className="bi bi-basket-fill mx-1"></i>
             {ingredients}
           </div>
           <span className="badge bg-success price">

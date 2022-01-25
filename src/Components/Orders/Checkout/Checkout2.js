@@ -82,33 +82,8 @@ class Checkout2 extends Component {
                   });
                 });
             }}
-            validate={(value) => {
-              const error = {};
-              if (!value.customerName) {
-                error.customerName = "Required!";
-              }
-              if (!value.customerEmail) {
-                error.customerEmail = "Required";
-              } else if (
-                !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-                  value.customerEmail
-                )
-              ) {
-                error.customerEmail = "Invalid Email";
-              }
-              if (!value.customerPhone) {
-                error.customerPhone = "Required!";
-              } else if (
-                /(^(\+8801|8801|01|008801))[1|3-9]{1}(\d){8}$/.test(
-                  value.customerPhone
-                )
-              ) {
-                error.customerPhone = "Invalid Phone Number";
-              }
-              return error;
-            }}
           >
-            {({ values, handleChange, handleSubmit, errors }) => (
+            {({ values, handleChange, handleSubmit }) => (
               <div className="checkoutForm mt-3 shadow-sm">
                 <form onSubmit={handleSubmit}>
                   <div>
@@ -121,7 +96,6 @@ class Checkout2 extends Component {
                       value={values.customerName}
                       onChange={handleChange}
                     />
-                    <span className="text-danger">{errors.customerName}</span>
                   </div>
                   <div>
                     <label>Email-Address</label>
@@ -133,7 +107,6 @@ class Checkout2 extends Component {
                       value={values.customerEmail}
                       onChange={handleChange}
                     />
-                    <span className="text-danger">{errors.customerEmail}</span>
                   </div>
                   <div>
                     <label>Phone Number</label>
@@ -145,7 +118,6 @@ class Checkout2 extends Component {
                       value={values.customerPhone}
                       onChange={handleChange}
                     />
-                    <span className="text-danger">{errors.customerPhone}</span>
                   </div>
                   <div>
                     <label>Delivery Address</label>

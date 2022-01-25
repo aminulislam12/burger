@@ -27,7 +27,6 @@ class Orders extends Component {
     console.log(this.props);
   }
   render() {
-    console.log(this.props.orders);
     let order = null;
     if (this.props.orderError) {
       order = (
