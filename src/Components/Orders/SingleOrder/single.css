@@ -1,10 +1,15 @@
 .orderShow {
+  position: relative;
   border: 1.5px solid #d70f64;
   padding: 8px;
   border-radius: 5px;
   margin-bottom: 10px;
 }
-
+.price {
+  position: absolute;
+  top: -8px;
+  right: -13px;
+}
 .ingredients {
   border: 1px solid #d70f64;
   padding: 5px;
