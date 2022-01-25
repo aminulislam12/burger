@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Nav, Navbar, NavbarBrand, NavItem } from "reactstrap";
+import { Nav, Navbar, NavItem } from "reactstrap";
 
 const Header = () => {
   return (
     <div>
       <Navbar color="dark" expand="md" dark container>
-        <NavLink to="/" exact className="nav-link text-light fw-bold">
+        <NavLink to="/" exact className="text-light fw-bold navbar-brand">
           myBurger
         </NavLink>
         <Nav navbar className="mr-auto">

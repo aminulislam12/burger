@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { featchOrder } from "../redux/actionCreators";
 import { connect } from "react-redux";
 import SingleOrderShow from "./SingleOrder/SingleorderShow";
+import { UncontrolledAlert } from "reactstrap";
+import Spinner from "./Spinner/Spinner";
 
 //Redux Store Function
 const mapStateToProps = (state) => {
@@ -26,13 +28,33 @@ class Orders extends Component {
   }
   render() {
     console.log(this.props.orders);
-    let order = this.props.orders.map((order) => {
-      return <SingleOrderShow order={order} key={order.id} />;
-    });
+    let order = null;
+    if (this.props.orderError) {
+      order = (
+        <UncontrolledAlert color="danger">
+          Sorry! Something Want to Wrong!
+        </UncontrolledAlert>
+      );
+    } else {
+      if (this.props.orders.length === 0) {
+        order = (
+          <UncontrolledAlert color="info">
+            Sorry You Have No Order!
+          </UncontrolledAlert>
+        );
+      } else {
+        order = this.props.orders.map((order) => {
+          return <SingleOrderShow order={order} key={order.id} />;
+        });
+      }
+    }
+
     return (
       <>
         <div className="container">
-          <div className="showOrder row my-2">{order}</div>
+          <div className="showOrder row my-2">
+            {this.props.orderLoading ? <Spinner /> : order}
+          </div>
         </div>
       </>
     );

@@ -52,6 +52,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
       };
     case ActionType.RESET_INGREDIENT:
       return {
+        ...state,
         inGredient: [
           { type: "Salad", amount: 0 },
           { type: "Cheese", amount: 0 },
@@ -72,6 +73,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         orders: order,
         orderLoading: false,
+      };
+    case ActionType.FAIELD_LOAD_ORDER:
+      return {
+        ...state,
+        orderLoading: false,
+        orderError: true,
       };
     default:
       return state;
