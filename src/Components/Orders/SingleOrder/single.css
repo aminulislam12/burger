@@ -1,0 +1,28 @@
+.orderShow {
+  border: 1.5px solid #d70f64;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.ingredients {
+  border: 1px solid #d70f64;
+  padding: 5px;
+  border-radius: 3px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.ingredients:hover {
+  background-color: #d70f64;
+  transition: 0.6s;
+  color: #fff;
+  cursor: pointer;
+}
+.orderShow h5 {
+  font-size: 15px;
+  font-weight: bold;
+}
+.orderShow strong {
+  font-size: 15px;
+  color: #4a0212;
+}

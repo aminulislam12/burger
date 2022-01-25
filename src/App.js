@@ -4,6 +4,7 @@ import "./App.css";
 import Main from "./Components/Main";
 
 function App() {
+  document.title = "Burger Builder Application";
   return (
     <div>
       <BrowserRouter>

@@ -3,7 +3,6 @@ import Ingredient from "../Ingredients/Ingredient";
 import "./Burger.css";
 
 const Burger = (props) => {
-  console.log(props);
   let IngamountArry = props.inGredient
     .map((item) => {
       let amountArry = [...Array(item.amount).keys()];

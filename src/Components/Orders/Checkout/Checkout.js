@@ -3,7 +3,8 @@ import "./Checkout.css";
 import { connect } from "react-redux";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
-import { Modal, ModalBody } from "reactstrap";
+import { Button, Modal, ModalBody } from "reactstrap";
+import { resetIngredient } from "../../redux/actionCreators";
 const baseURL =
   "https://burgerbuilder-f94ae-default-rtdb.firebaseio.com/order.json";
 
@@ -15,6 +16,11 @@ const mapStateToprops = (state) => {
   };
 };
 
+const mapDispatchtoProps = (dispatch) => {
+  return {
+    resetIngredient: () => dispatch(resetIngredient()),
+  };
+};
 class Checkout extends Component {
   state = {
     values: {
@@ -65,6 +71,7 @@ class Checkout extends Component {
             modalisOpen: true,
             modalMessage: "SuccessFully Order Placed!",
           });
+          this.props.resetIngredient();
         } else {
           this.setState({
             isLoading: false,
@@ -151,12 +158,20 @@ class Checkout extends Component {
                 </select>
               </div>
               <div className="my-3 d-grid d-md-flex gap-5 d-block justify-content-center">
-                <p className="btn btn-success px-5" onClick={this.submitHandle}>
+                <Button
+                  className="btn btn-success px-5"
+                  onClick={this.submitHandle}
+                  disabled={!this.props.purchesable}
+                >
                   Place Order
-                </p>
-                <p className="btn btn-danger px-5" onClick={this.goBack}>
+                </Button>
+                <span
+                  href="#"
+                  className="btn btn-danger px-5"
+                  onClick={this.goBack}
+                >
                   Cancle Order
-                </p>
+                </span>
               </div>
             </form>
           </div>
@@ -174,4 +189,4 @@ class Checkout extends Component {
   }
 }
 
-export default connect(mapStateToprops)(Checkout);
+export default connect(mapStateToprops, mapDispatchtoProps)(Checkout);

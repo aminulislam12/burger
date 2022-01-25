@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <div>
       <Navbar color="dark" expand="md" dark container>
-        <NavbarBrand href="/">burgerBuilder</NavbarBrand>
+        <NavLink to="/" exact className="nav-link text-light fw-bold">
+          myBurger
+        </NavLink>
         <Nav navbar className="mr-auto">
           <NavItem>
             <NavLink exact to="/" className="nav-link">
