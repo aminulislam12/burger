@@ -5,3 +5,13 @@
 .myBtn {
   padding: 5px 120px 5px 120px !important;
 }
+.mybtns {
+  background: #d70f64;
+  border: none;
+  margin-bottom: 5px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px;
+  border-radius: 3px;
+}

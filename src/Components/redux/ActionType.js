@@ -4,3 +4,7 @@ export const UPDATE_PUCHESABLE = "UPDATE_PURCHESABLE";
 export const LOAD_ORDER = "LOAD_ORDER";
 export const FAIELD_LOAD_ORDER = "FAIELD_LOAD_ORDER";
 export const RESET_INGREDIENT = "RESET_INGREDIENT";
+
+export const AUTH_SUCCESS = "AUTHH_SUCCESS";
+export const AUTH_FAILD = "AUTH_FAILD";
+export const AUTH_LOGOUT = "AUTH_LOGOUT";
