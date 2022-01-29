@@ -11,7 +11,21 @@ export const authSuccess = (token, userId) => {
   };
 };
 
+export const authFaild = (errMessage) => {
+  return {
+    type: ActionType.AUTH_FAILD,
+    payload: errMessage,
+  };
+};
+export const authLoading = (isLoading) => {
+  return {
+    type: ActionType.AUTH_LOADING,
+    payload: isLoading,
+  };
+};
+
 export const auth = (email, password, mode) => (dispatch) => {
+  dispatch(authLoading(true));
   const authData = {
     email: email,
     password: password,
@@ -25,15 +39,24 @@ export const auth = (email, password, mode) => (dispatch) => {
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
   }
   const API_KEY = "AIzaSyBi4brC_9RXSnjiivnSqheYKLqxkuc7Ms4";
-  axios.post(authURL + API_KEY, authData).then((response) => {
-    localStorage.setItem("token", response.data.idToken);
-    localStorage.setItem("userId", response.data.localId);
-    const expireTime = new Date(
-      new Date().getTime() + response.data.expiresIn * 1000
-    );
-    localStorage.setItem("exprireTime", expireTime);
-    dispatch(authSuccess(response.data.idToken, response.data.localId));
-  });
+  axios
+    .post(authURL + API_KEY, authData)
+    .then((response) => {
+      dispatch(authLoading(false));
+      console.log(response);
+      localStorage.setItem("token", response.data.idToken);
+      localStorage.setItem("userId", response.data.localId);
+      const expireTime = new Date(
+        new Date().getTime() + response.data.expiresIn * 1000
+      );
+      localStorage.setItem("exprireTime", expireTime);
+      dispatch(authSuccess(response.data.idToken, response.data.localId));
+    })
+    .catch((error) => {
+      dispatch(authLoading(false));
+      console.log(error.response);
+      dispatch(authFaild(error.response.data.error.message));
+    });
 };
 export const logout = () => {
   localStorage.removeItem("token");

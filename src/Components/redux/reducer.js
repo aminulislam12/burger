@@ -18,6 +18,8 @@ const INITIAL_STATE = {
   purchesable: false,
   token: null,
   userId: null,
+  authLoading: false,
+  authfaildMsg: null,
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -92,8 +94,20 @@ export const reducer = (state = INITIAL_STATE, action) => {
     case ActionType.AUTH_LOGOUT:
       return {
         ...state,
+        authfaildMsg: null,
         token: null,
         userId: null,
+      };
+    case ActionType.AUTH_LOADING:
+      return {
+        ...state,
+        authfaildMsg: null,
+        authLoading: action.payload,
+      };
+    case ActionType.AUTH_FAILD:
+      return {
+        ...state,
+        authfaildMsg: action.payload,
       };
     default:
       return state;

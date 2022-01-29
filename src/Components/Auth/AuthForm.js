@@ -3,7 +3,15 @@ import React, { Component } from "react";
 import "./AuthForm.css";
 import { auth } from "../redux/Authactioncreaors";
 import { connect } from "react-redux";
+import Spinner from "../Orders/Spinner/Spinner";
+import { Alert } from "reactstrap";
 
+const mapStateToprops = (state) => {
+  return {
+    authLoading: state.authLoading,
+    authfaildMsg: state.authfaildMsg,
+  };
+};
 const mapDispatchProps = (dispatch) => {
   return {
     auth: (email, password, mode) => dispatch(auth(email, password, mode)),
@@ -20,8 +28,19 @@ class AuthForm extends Component {
     });
   };
   render() {
-    return (
-      <div>
+    let authError = null;
+    if (this.props.authfaildMsg !== null) {
+      authError = (
+        <Alert color="danger" className="fw-bold">
+          {this.props.authfaildMsg}
+        </Alert>
+      );
+    }
+    let form = null;
+    if (this.props.authLoading) {
+      form = <Spinner />;
+    } else {
+      form = (
         <Formik
           initialValues={{ email: "", password: "", confrimpass: "" }}
           onSubmit={(value) =>
@@ -121,9 +140,15 @@ class AuthForm extends Component {
             </div>
           )}
         </Formik>
+      );
+    }
+    return (
+      <div>
+        <div className="container my-2">{authError}</div>
+        {form}
       </div>
     );
   }
 }
 
-export default connect(null, mapDispatchProps)(AuthForm);
+export default connect(mapStateToprops, mapDispatchProps)(AuthForm);

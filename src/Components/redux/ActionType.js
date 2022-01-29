@@ -8,3 +8,4 @@ export const RESET_INGREDIENT = "RESET_INGREDIENT";
 export const AUTH_SUCCESS = "AUTHH_SUCCESS";
 export const AUTH_FAILD = "AUTH_FAILD";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
+export const AUTH_LOADING = "AUTH_LOADING";
