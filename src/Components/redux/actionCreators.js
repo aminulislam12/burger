@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as Actiontype from "./ActionType";
 const baseURL =
-  "https://burgerbuilder-f94ae-default-rtdb.firebaseio.com/order.json";
+  "https://burgerbuilder-f94ae-default-rtdb.firebaseio.com/order.json?auth=";
 
 export const addIngredient = (ingtype) => {
   return {
@@ -42,9 +42,10 @@ export const faildLoad = () => {
   };
 };
 
-export const featchOrder = () => (dispatch) => {
+export const featchOrder = (token, userId) => (dispatch) => {
+  const quareyPream = '&orderBy="userId"&equalTo="' + userId + '"';
   axios
-    .get(baseURL)
+    .get(baseURL + token + quareyPream)
     .then((response) => dispatch(loadOrder(response.data)))
     .catch((error) => {
       dispatch(faildLoad());

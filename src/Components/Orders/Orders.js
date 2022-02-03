@@ -11,17 +11,19 @@ const mapStateToProps = (state) => {
     orders: state.orders,
     orderLoading: state.orderLoading,
     orderError: state.orderError,
+    token: state.token,
+    userId: state.userId,
   };
 };
 const mapDispatchtoProps = (dispatch) => {
   return {
-    featchOrder: () => dispatch(featchOrder()),
+    featchOrder: (token, userId) => dispatch(featchOrder(token, userId)),
   };
 };
 
 class Orders extends Component {
   componentDidMount() {
-    this.props.featchOrder();
+    this.props.featchOrder(this.props.token, this.props.userId);
   }
   componentDidUpdate() {
     console.log(this.props);

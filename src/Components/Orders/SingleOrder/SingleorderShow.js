@@ -2,7 +2,6 @@ import React from "react";
 import "./single.css";
 
 const SingleOrderShow = (props) => {
-  console.log(props);
   const ingredients = props.order.ingredient.map((item) => {
     return (
       <span key={Math.random()} className="ingredients">

@@ -7,13 +7,15 @@ import { Formik } from "formik";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 const baseURL =
-  "https://burgerbuilder-f94ae-default-rtdb.firebaseio.com/order.json";
+  "https://burgerbuilder-f94ae-default-rtdb.firebaseio.com/order.json?auth=";
 
 const mapStateToprops = (state) => {
   return {
     ingredient: state.inGredient,
     totalPrice: state.totalPrice,
     purchesable: state.purchesable,
+    token: state.token,
+    userId: state.userId,
   };
 };
 
@@ -55,9 +57,11 @@ class Checkout2 extends Component {
                 ingredient: this.props.ingredient,
                 totalPrice: this.props.totalPrice,
                 date: new Date().toString(),
+                userId: this.props.userId,
               };
+              console.log(orders);
               axios
-                .post(baseURL, orders)
+                .post(baseURL + this.props.token, orders)
                 .then((response) => {
                   if (response.status === 200) {
                     this.setState({
